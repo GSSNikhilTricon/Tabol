@@ -1,0 +1,42 @@
+/* Flex Container */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(111, 83, 83);
+}
+
+.flex-container {
+    background: blanchedalmond;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: normal;
+    gap: 6px;
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+}
+
+.flex-container#board{
+    flex-direction: row;
+}
+
+.flex-container#ticket{
+    flex-direction: column;
+}
+
+.flex-item {
+    background: rgb(99, 81, 81);
+    color: #ffffff;
+    margin: 4px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    min-height: 20px;
+}
