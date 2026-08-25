@@ -5,7 +5,7 @@ const endRes = document.getElementById('endRes')
 // const qrcode = new QRCode("qrcode","https://www.geeksforgeeks.org/");
 
 let numbers = []
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 9; i++) {
     let temp = [];
     for (let j = 0; j < 10; j++) {
         temp.push(i * 10 + j + 1);

@@ -1,14 +1,14 @@
 const ticketContainer = document.getElementById('ticket');
 
 let s = 25
-let rows = 10
+let rows = 9
 let cols = 3
 
-const ticket = [];
+let ticket = [];
 for (let i = 0; i < cols; i++) {
     let row = [];
     for (let j = 0; j < rows; j++) {
-        row.push('L');
+        row.push('-1');
     }
     ticket.push(row);
 }
@@ -29,14 +29,24 @@ function genRandIndices() {
 function createTktSpaces() {
     for (let row of ticket) {
         let indices = genRandIndices();
+
         for (let idx of indices) {
             row[idx] = "N";
         }
     }
 }
 
-function addNum() {
-    console.log(ticket)
+
+const num_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+let temp_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+function getRandomNum() {
+    let idx = Math.floor(Math.random() * temp_list.length);
+    let num = temp_list[idx];
+    temp_list = temp_list.filter(n => n !== num);
+    return num;
+}
+
+function addNum(ticket) {
     for (let i = 0; i < ticket[0].length; i++){
         let c = 0;
         let indices = [];
@@ -48,33 +58,23 @@ function addNum() {
         }
 
         let sample = [];
-        for (let i = 0; i < c; i++) {
+        for (let k = 0; k < c; k++) {
             let num = getRandomNum();
-            sample.push(num)
+            sample.push(num + 10 * i)
         }
 
         sample.sort();
 
         for (let k = 0; k < c; k++) {
-            console.log(i, k);
-            console.log(ticket)
-            console.log(indices)
-            ticket[i][k] = indices[k];
+            ticket[indices[k]][i] = sample[k];
         }
 
         temp_list = num_list
-    }
-}
 
-const num_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-let temp_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-function getRandomNum() {
-    let idx = Math.floor(Math.random() * temp_list.length);
-    let num = temp_list[idx];
-    temp_list = temp_list.filter(n => n !== num);
-    return num;
+    }
+
+    return ticket
 }
-createTktSpaces();
 
 function buildBoard(numbers, container) {
     for (let idx in numbers) {
@@ -95,5 +95,6 @@ function buildBoard(numbers, container) {
     }
 }
 
+createTktSpaces();
+ticket = addNum(ticket);
 buildBoard(ticket, ticketContainer);
-addNum();
