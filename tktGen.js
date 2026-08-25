@@ -58,9 +58,13 @@ function addNum(ticket) {
         }
 
         let sample = [];
-        for (let k = 0; k < c; k++) {
-            let num = getRandomNum();
-            sample.push(num + 10 * i)
+        let k = 0;
+        while (k < c) {
+            let num = getRandomNum() + 10 * i;
+            if (num !== 0) {
+                sample.push(num);
+                k++;
+            }
         }
 
         sample.sort();
