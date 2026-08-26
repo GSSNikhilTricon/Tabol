@@ -2,6 +2,7 @@ const board = document.getElementById('board');
 const randBtn = document.getElementById('randBtn');
 const numNotice = document.getElementById('numNotice');
 const endRes = document.getElementById('endRes')
+
 // const qrcode = new QRCode("qrcode","https://www.geeksforgeeks.org/");
 
 let numbers = []
@@ -13,22 +14,6 @@ for (let i = 0; i < 9; i++) {
     numbers.push(temp);
 }
 
-function buildBoard(numbers, container) {
-    for (let idx in numbers) {
-        const colEle = document.createElement('div');
-        colEle.id = `Col#${idx}`
-        let set = numbers[idx];
-
-        for (let num of set) {
-            const numEle = document.createElement('div');
-            numEle.className = 'flex-item';
-            numEle.id = num;
-            numEle.textContent = num;
-            colEle.appendChild(numEle);
-        }
-        container.appendChild(colEle);
-    }
-}
 
 function getRandomIdx() {
     const colIdx = Math.floor(Math.random() * numbers.length);
@@ -52,11 +37,21 @@ function getRandomIdx() {
     
 }
 
+function buildBoard(numbers, container) {
+    for (let idx in numbers) {
+        const colEle = document.createElement('div');
+        colEle.id = `Col#${idx}`
+        let set = numbers[idx];
 
-buildBoard(numbers, board);
-
-class Board{
-    constructor() {
-        
+        for (let num of set) {
+            const numEle = document.createElement('div');
+            numEle.className = 'flex-item';
+            numEle.id = num;
+            numEle.textContent = num;
+            colEle.appendChild(numEle);
+        }
+        container.appendChild(colEle);
     }
 }
+
+buildBoard(numbers, board);

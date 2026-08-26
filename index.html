@@ -10,9 +10,10 @@
 <body>
     <main>
         <section class="ticketContainer">
-            <div id="ticket" class="flex-container"></div>
+            <table id="ticket">
+            </table>
         </section>
-        <section class="boardContainer" style="display: none;">
+        <section class="boardContainer">
             <button id="randBtn" onclick=getRandomIdx()>
                 Get random
             </button>
@@ -23,7 +24,8 @@
 
         <!-- <div id="qrcode"></div> -->
     </main>
-    <script src="script.js"></script>
+    <script src="board.js"></script>
     <script src="tktGen.js"></script>
+    <!-- <script src="arrayToHtml.js" type="module"></script> -->
 </body>
 </html>

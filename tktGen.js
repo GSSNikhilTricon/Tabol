@@ -4,16 +4,20 @@ let s = 25
 let rows = 9
 let cols = 3
 
-let ticket = [];
-for (let i = 0; i < cols; i++) {
-    let row = [];
-    for (let j = 0; j < rows; j++) {
-        row.push('-1');
+function buildBaseTicket(rows, cols) {
+    let ticket = [];
+    for (let i = 0; i < cols; i++) {
+        let row = [];
+        for (let j = 0; j < rows; j++) {
+            row.push('-1');
+        }
+        ticket.push(row);
     }
-    ticket.push(row);
+    return ticket;
 }
+let ticket = buildBaseTicket(rows, cols);
 
-function genRandIndices() {
+function genRowIndices() {
     let indices = [];
     
     while (indices.length < 5) {        
@@ -28,7 +32,7 @@ function genRandIndices() {
 
 function createTktSpaces() {
     for (let row of ticket) {
-        let indices = genRandIndices();
+        let indices = genRowIndices();
 
         for (let idx of indices) {
             row[idx] = "N";

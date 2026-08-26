@@ -40,3 +40,18 @@ body {
     min-width: 20px;
     min-height: 20px;
 }
+
+table, th, td {
+  border: 3px solid black;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+
+table {
+    margin-bottom: 15px;
+}
+
+button {
+    height: 8vh;
+    width: 4vw;
+}
