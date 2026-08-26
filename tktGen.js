@@ -86,21 +86,20 @@ function addNum(ticket) {
 
 function buildBoard(numbers, container) {
     for (let idx in numbers) {
-        const colEle = document.createElement('div');
-        colEle.id = `Col#${idx}`
-        colEle.style.display = 'flex';
-        colEle.style.flexDirection = 'row';
-        let set = numbers[idx];
+    const rowEle = document.createElement('tr');
+    rowEle.id = `Row#${idx}`
+    let set = numbers[idx];
 
-        for (let num of set) {
-            const numEle = document.createElement('div');
-            numEle.className = 'flex-item';
-            numEle.id = num;
-            numEle.textContent = num;
-            colEle.appendChild(numEle);
-        }
-        container.appendChild(colEle);
+    for (let num of set) {
+        const numEleCont = document.createElement('td');
+        const numEle = document.createElement('button');
+        numEle.id = num;
+        numEle.textContent = num;
+        numEleCont.appendChild(numEle);
+        rowEle.appendChild(numEleCont);
     }
+    container.appendChild(rowEle);
+}
 }
 
 createTktSpaces();
