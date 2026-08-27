@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Tabol</title>
 </head>
 <body>
-    <main>
-        <section class="ticketContainer">
+    <main class="main-container">
+        <section class="ticket-container">
             <table id="ticket">
             </table>
+            <span id="winningCondition"></span>
         </section>
-        <section class="boardContainer">
+
+        <section class="condition-check-container">
+            <button id="firstFiveCheck">First Five</button>
+            <button id="topRowCheck">Top Row</button>
+            <button id="midRowCheck">Middle Row</button>
+            <button id="botRowCheck">Bottom Row</button>
+            <button id="fullBoardCheck">Full Housie</button>
+        </section>
+
+        <section class="board-container">
             <button id="randBtn">
-                Get random
+                Pick Number
             </button>
-            <div id="endRes"></div>
-            <div id="numNotice"></div>
+            <span id="endRes"></span>
+            <span id="numNotice"></span>
             <div id="board" class="flex-container"></div>
         </section>
 
@@ -26,6 +36,7 @@
     </main>
     <script src="board.js"></script>
     <script src="tktGen.js"></script>
+    <script src="winCheck.js"></script>
     <!-- <script src="arrayToHtml.js" type="module"></script> -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-const ticketContainer = document.getElementById('ticket');
+const ticketEle = document.getElementById('ticket');
 
 let s = 25
 let rows = 9
@@ -50,7 +50,9 @@ function getRandomNum() {
     return num;
 }
 
+//This changes existing tkt and returns a obj.
 function addNum(ticket) {
+    let ticketNumObj = {};
     for (let i = 0; i < ticket[0].length; i++){
         let c = 0;
         let indices = [];
@@ -75,13 +77,14 @@ function addNum(ticket) {
 
         for (let k = 0; k < c; k++) {
             ticket[indices[k]][i] = sample[k];
+            ticketNumObj[`${sample[k]}`] = indices[k];
         }
 
         temp_list = num_list
 
     }
 
-    return ticket
+    return ticketNumObj;
 }
 
 function buildBoard(numbers, container) {
@@ -111,8 +114,12 @@ function buildBoard(numbers, container) {
 }
 
 function ticketNumberStriker(numEle) {
-    if (picked_nums.has(numEle.id.substring(3))) {
+    let number = numEle.id.substring(3);
+    if (picked_nums_set.has(number) && number in ticketNumObj) {
         numEle.classList.add('button-striked');
+        sessionTicketNumsObj['total'] += 1;
+        sessionTicketNumsObj[ticketNumObj[number]] += 1;
+        console.log(sessionTicketNumsObj);
     } else {
         endRes.textContent = 'Number not called yet';
         endRes.style.color = 'red'
@@ -120,5 +127,5 @@ function ticketNumberStriker(numEle) {
 }
 
 createTktSpaces();
-ticket = addNum(ticket);
-buildBoard(ticket, ticketContainer);
+ticketNumObj = addNum(ticket);
+buildBoard(ticket, ticketEle);
