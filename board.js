@@ -5,14 +5,18 @@ const endRes = document.getElementById('endRes')
 
 // const qrcode = new QRCode("qrcode","https://www.geeksforgeeks.org/");
 
-let numbers = []
-for (let i = 0; i < 9; i++) {
-    let temp = [];
-    for (let j = 0; j < 10; j++) {
-        temp.push(i * 10 + j + 1);
+function createBoardNumArray(rows, cols) {
+    let numbers = []
+    for (let i = 0; i < rows; i++) {
+        let temp = [];
+        for (let j = 0; j < cols; j++) {
+            temp.push(i * 10 + j + 1);
+        }
+        numbers.push(temp);
     }
-    numbers.push(temp);
+    return numbers;
 }
+let numbers = createBoardNumArray(9, 10)
 
 
 function getRandomIdx() {
@@ -20,13 +24,19 @@ function getRandomIdx() {
     let col = numbers[colIdx];
     const numIdx = Math.floor(Math.random() * col.length)
     const num = col[numIdx];
-    console.log(num);
-
-    const ele = document.getElementById(`${num}`);
 
     numbers[colIdx] = col.filter(n => n !== num);
     numbers = numbers.filter(n => n.length !== 0);
+    return num;
+}
 
+const picked_nums = new Set();
+
+function pickNum() {
+    let num = getRandomIdx();
+    picked_nums.add(`${num}`);
+    
+    const ele = document.getElementById(`${num}`);
     ele.style.background = 'red';
     numNotice.textContent = num;
 
@@ -34,8 +44,12 @@ function getRandomIdx() {
         endRes.textContent = "Over";
         randBtn.removeEventListener(getRandomIdx());
     }
-    
 }
+
+randBtn.onclick = () => {
+    pickNum();
+}
+
 
 function buildBoard(numbers, container) {
     for (let idx in numbers) {

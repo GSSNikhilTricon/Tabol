@@ -54,4 +54,14 @@ table {
 td button {
     height: 8vh;
     width: 4vw;
+    cursor: pointer;
+}
+
+.button-striked {
+    background-color: green;
+    color: #ffffff;
+}
+
+.empty-button {
+    
 }

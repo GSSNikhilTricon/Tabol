@@ -86,20 +86,37 @@ function addNum(ticket) {
 
 function buildBoard(numbers, container) {
     for (let idx in numbers) {
-    const rowEle = document.createElement('tr');
-    rowEle.id = `Row#${idx}`
-    let set = numbers[idx];
+        const rowEle = document.createElement('tr');
+        rowEle.id = `Row#${idx}`
+        let set = numbers[idx];
 
-    for (let num of set) {
-        const numEleCont = document.createElement('td');
-        const numEle = document.createElement('button');
-        numEle.id = num;
-        numEle.textContent = num;
-        numEleCont.appendChild(numEle);
-        rowEle.appendChild(numEleCont);
+        for (let num of set) {
+            const numEleCont = document.createElement('td');
+            const numEle = document.createElement('button');
+            if (num == -1) {
+                numEle.classList.add('empty-button');
+                numEle.disabled = 'disabled';
+            } else {
+                numEle.id = `btn${num}`;
+                numEle.textContent = num;
+                numEle.onclick = (e) => {
+                    ticketNumberStriker(e.target)
+                };
+            }
+            numEleCont.appendChild(numEle);
+            rowEle.appendChild(numEleCont);
+        }
+        container.appendChild(rowEle);
     }
-    container.appendChild(rowEle);
 }
+
+function ticketNumberStriker(numEle) {
+    if (picked_nums.has(numEle.id.substring(3))) {
+        numEle.classList.add('button-striked');
+    } else {
+        endRes.textContent = 'Number not called yet';
+        endRes.style.color = 'red'
+    }
 }
 
 createTktSpaces();
