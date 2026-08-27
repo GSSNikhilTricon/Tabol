@@ -7,6 +7,21 @@ body {
     background-color: rgb(111, 83, 83);
 }
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.board-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .flex-container {
     background: blanchedalmond;
     display: flex;
@@ -15,8 +30,6 @@ body {
     align-items: center;
     align-content: normal;
     gap: 6px;
-    height: auto;
-    width: auto;
     border-radius: 10px;
 }
 
@@ -39,6 +52,11 @@ body {
     justify-content: center;
     min-width: 20px;
     min-height: 20px;
+}
+
+#numNotice {
+    color: rgb(255, 255, 255);
+    font-size:xx-large;
 }
 
 table, th, td {
@@ -64,4 +82,18 @@ td button {
 
 .empty-button {
     
+}
+
+.condition-check-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.condition-check-container button {
+    height: 8vh;
+    width: 4vw;
+    border-radius: 10px;
 }

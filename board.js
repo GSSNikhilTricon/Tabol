@@ -30,20 +30,33 @@ function getRandomIdx() {
     return num;
 }
 
-const picked_nums = new Set();
+const picked_nums_set = new Set();
+const picked_nums_arr = [];
 
 function pickNum() {
     let num = getRandomIdx();
-    picked_nums.add(`${num}`);
+    picked_nums_set.add(`${num}`);
+    if (picked_nums_arr.length == 5) {
+        picked_nums_arr.shift();
+    }
+    picked_nums_arr.push(num);
     
     const ele = document.getElementById(`${num}`);
     ele.style.background = 'red';
-    numNotice.textContent = num;
+    showRecentPickedNum(picked_nums_arr);
 
     if (numbers.length === 0) {
         endRes.textContent = "Over";
         randBtn.removeEventListener(getRandomIdx());
     }
+}
+
+function showRecentPickedNum(arr) {
+    let str = ''
+    arr.forEach(ele => {
+        str = ele + " " + str;
+    }); 
+    numNotice.textContent = str;
 }
 
 randBtn.onclick = () => {
